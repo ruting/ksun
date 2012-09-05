@@ -1,0 +1,92 @@
+// THUMBNAILS
+// ----------
+// Note: `.thumbnails` and `.thumbnails > li` are overriden in responsive files
+
+// Make wrapper ul behave like the grid
+.thumbnails {
+  margin-left: -@gridGutterWidth;
+  list-style: none;
+  .clearfix();
+}
+// Fluid rows have no left margin
+.row-fluid .thumbnails {
+  margin-left: 0;
+}
+
+// Float li to make thumbnails appear in a row
+.thumbnails > li {
+  float: left; // Explicity set the float since we don't require .span* classes
+  margin-bottom: @baseLineHeight;
+  margin-left: @gridGutterWidth;
+}
+
+// The actual thumbnail (can be `a` or `div`)
+.thumbnail {
+  display: block;
+  padding: 4px;
+  line-height: 1;
+  
+     background-color: #fff;
+	-webkit-box-shadow: 0 8px 6px -6px black;
+	   -moz-box-shadow: 0 8px 6px -6px black;
+	        box-shadow: 0 8px 6px -6px black;
+    border-color: #666666 #777777 #999999;
+    border-style: solid;
+    border-width: 1px;
+  
+  
+}
+// Add a hover state for linked versions only
+a.thumbnail:hover {
+  border-color: @linkColor;
+  .box-shadow(0 1px 4px rgba(0,105,214,.25));
+}
+
+// Images and captions
+.thumbnail > img {
+  display: block;
+  max-width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+.thumbnail .caption {
+  padding: 9px;
+}
+
+
+
+// Speech-bubble
+
+.speech-bubble
+  {
+   width: auto;
+   padding: 10px;
+   background: #404040;
+   color: #fff;
+   -moz-border-radius: 10px;
+   -webkit-border-radius: 10px;
+   border-radius: 10px;
+  }
+  
+.speech-bubble:after
+  {
+   content: "";
+   border: solid 10px transparent; /* set all borders to 10 pixels width */
+   border-top-color: #404040; /* the callout */
+   border-bottom: 0; /* we do not need the bottom border in this case */
+   width: 0;
+   height: 0;
+   overflow: hidden;
+   display: block;
+   position: relative;
+   bottom: -20px; /* border-width of the :after element + padding of the root element */
+   margin: auto;
+  }
+  
+
+
+
+
+
+
+

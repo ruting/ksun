@@ -1,0 +1,12 @@
+@font-face {
+  font-family: 'Happy Monkey';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Happy Monkey'), local('HappyMonkey-Regular'), url(http://themes.googleusercontent.com/static/fonts/happymonkey/v2/c2o0ps8nkBmaOYctqBq1raRDOzjiPcYnFooOUGCOsRk.woff) format('woff');
+}
+@font-face {
+  font-family: 'Chango';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Chango Regular'), local('Chango-Regular'), url(http://themes.googleusercontent.com/static/fonts/chango/v2/TBvknwF6LJMMCJ0ydvSzsOvvDin1pK8aKteLpeZ5c0A.woff) format('woff');
+}

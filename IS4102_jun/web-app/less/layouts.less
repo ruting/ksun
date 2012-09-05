@@ -1,0 +1,127 @@
+//
+// Layouts
+// Fixed-width and fluid (with sidebar) layouts
+// --------------------------------------------
+
+
+// Container (centered, fixed-width layouts)
+.container {
+  .container-fixed();
+}
+
+// Fluid layouts (left aligned, with sidebar, min- & max-width content)
+.container-fluid {
+  padding-right: @gridGutterWidth;
+  padding-left: @gridGutterWidth;
+  .clearfix();
+}
+
+// Fluid layouts (left aligned, with sidebar, min- & max-width content)
+.container-fluid-twitter {
+  .clearfix();
+    height:auto;
+
+    padding-bottom:30px;
+    background-position: bottom right;
+    background-image: url('../images/twitter_logo.png');
+    background-size: 40px;
+    background-repeat: no-repeat;
+    
+    
+}
+
+// Fluid layouts (left aligned, with sidebar, min- & max-width content)
+.container-fluid-newsletter {
+  //padding-top:20px;
+  //padding-left: 110px;
+  .clearfix();
+    width: auto;  
+    height:auto;
+    background-position: 20px ;
+    //background-image: url('../images/newsletters.apng');
+    background-size: 60px;
+    background-repeat: no-repeat;
+
+}
+
+//Twitter Widget
+
+#twitter_update_list { 
+list-style: none;  
+height:90%;
+color: #000; 
+font-size: 11px; 
+line-height: 18px; 
+}
+
+#twitter_update_list li { 
+    font-size: 11px;
+    padding: 6px 6px 6px 6px;
+    margin-bottom: 10px; 
+    position: relative; 
+    border: 1px solid #c4c4c4;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    -moz-box-shadow:inset 3px 6px 23px #cccccc;
+    -webkit-box-shadow:inset 3px 6px 23px #cccccc;
+    box-shadow:inset 3px 6px 23px #cccccc;
+}
+
+#twitter_update_list span a {
+	color: #888;
+}
+
+#twitter_update_list a[style="font-size: 85%;"], #twitter_update_list li>a:last-of-type {
+color: #000 !important; 
+position: absolute; 
+bottom: -4px; 
+right: 8px; 
+font-size: 10px !important; 
+}
+
+	
+#box 
+{
+  position: relative;
+  background: #ddd;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  padding: 2em 1.5em;
+  color: rgba(0,0,0, .8);
+  text-shadow: 0 1px 0 #fff;
+  line-height: 1.5;
+  margin: 10px auto;
+}
+
+
+#box:before, #box:after 
+{
+  z-index: -1; 
+  position: absolute; 
+  content: "";
+  bottom: 15px;
+  left: 10px;
+  width: 50%; 
+  top: 80%;
+  max-width:300px;
+  background: rgba(0, 0, 0, 0.7); 
+  -webkit-box-shadow: 0 15px 10px rgba(0,0,0, 0.7);   
+  -moz-box-shadow: 0 15px 10px rgba(0, 0, 0, 0.7);
+  box-shadow: 0 15px 10px rgba(0, 0, 0, 0.7);
+  -webkit-transform: rotate(-3deg);    
+  -moz-transform: rotate(-3deg);   
+  -o-transform: rotate(-3deg);
+  -ms-transform: rotate(-3deg);
+  transform: rotate(-3deg);
+}
+
+#box:after 
+{
+  -webkit-transform: rotate(3deg);
+  -moz-transform: rotate(3deg);
+  -o-transform: rotate(3deg);
+  -ms-transform: rotate(3deg);
+  transform: rotate(3deg);
+  right: 10px;
+  left: auto;
+}
