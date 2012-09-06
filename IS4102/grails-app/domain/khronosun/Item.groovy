@@ -26,6 +26,7 @@ class Item {
         quantity(blank:false)
         dateAdded(blank:false)
         category(blank:false)
+        template(nullable:true)
         itemImage(nullable:true, maxSize:5000000 )// to store files upto 5MB approx
 
     }

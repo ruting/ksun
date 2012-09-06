@@ -172,7 +172,10 @@ class ItemController {
     }
 
     
-    
+     def getTemplate(){
+            def hasNext = Item.executeQuery("select distinct a.template from Item a")
+        
+    }   
      //addtocart for diy items
     def addCartItemDiy () {
         def itemInstance = Item.get(params.item) //GET ITEM ID FROM PARAMETER
