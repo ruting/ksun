@@ -12,6 +12,20 @@ class ItemController {
     static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
     def searchableService
 
+    
+    
+        
+    //This is the DIY page
+    def diy() {        
+        [
+            itemInstanceList: Item.list(params), 
+            itemInstanceTotal: Item.count(),
+            designInstanceList: Design.list(params), 
+            designInstanceTotal: Design.count()
+        ]
+    }
+    
+    
     def index() {
         redirect(action: "list", params: params)
     }
@@ -157,6 +171,124 @@ class ItemController {
         }
     }
 
+    
+    
+     //addtocart for diy items
+    def addCartItemDiy () {
+        def itemInstance = Item.get(params.item) //GET ITEM ID FROM PARAMETER
+        def designInstance02 = Design.get(params.design02); //GET LOGO ID FROM PARAMETER
+        def cartInstance
+        def cartItemInstance
+        boolean check = false
+
+        //anyone can add item to cart in a session
+        def hasCart = Cart.find("from Cart as c where c.userId=:userId", [userId: (String)session.user.id])
+        //if a cart already existed in a session
+        if (hasCart != null) {
+            cartInstance = hasCart
+            if (cartInstance.cartItem != null) {
+                //iterating through each cartItem
+                cartInstance.cartItem.each {
+                    if (it.item == itemInstance) {
+                        check = true
+                        cartItemInstance = it
+                    }
+                }
+            }
+            if (check == true) {
+                //add duplicate cart items
+                cartItemInstance.quantity += 1
+                cartItemInstance.price = itemInstance.price
+                cartItemInstance.save(flush: true)
+                //checking cart
+                cartInstance.totalAmount += itemInstance.price
+                //Save to database
+                cartInstance.save(flush: true)
+            }
+            else if (check == false) {
+                //add new cart items
+                cartItemInstance = new CartItem()
+                cartItemInstance.quantity += 1
+                cartItemInstance.price = itemInstance.price
+                cartItemInstance.item = itemInstance
+                
+                //Add DESIGN AND LOGO
+                if(params.design01!=null){
+                   def designInstance = Design.get(params.design01) //GET DESIGN ID FROM PARAMETER
+                // Else we will add the existing design to the item
+                  if(designInstance!=null){
+                     cartItemInstance.addToDesign01(designInstance); 
+                  }else{//If design is not found in database, we will create a new instance
+                     designInstance = new Design();
+                     designInstance.name = "wtf"
+                     designInstance.status = "1"
+                     designInstance.setUser(User.get(session.user.id));
+                     designInstance.designType = "1"
+                     designInstance.imageType = "jsp"
+                     designInstance.designImage = ""
+                     designInstance.save(flush: true);
+                     cartItemInstance.addToDesign01(designInstance); 
+                  }
+                }
+                
+                //cartItemInstance.addToDesign02(designInstance02);
+
+                //Save cartItem to database
+                cartItemInstance.save(flush: true)
+                
+                //checking cart
+                cartInstance.totalAmount += itemInstance.price
+                cartInstance.cartItem.add(cartItemInstance)
+                cartInstance.save(flush: true)
+            }
+            flash.message = "Product is added to shopping cart"
+            redirect(action: "show", id: params.id)
+        }
+        //if a cart does not exist in a session
+        else {
+            cartInstance = new Cart()
+            //checking cartItem
+            cartItemInstance = new CartItem()
+            cartItemInstance.quantity += 1
+            cartItemInstance.price = itemInstance.price // must add the design price also!
+            cartItemInstance.item = itemInstance
+            
+                //Add DESIGN AND LOGO
+                if(params.design01!=null){
+                   def designInstance = Design.get(params.design01) //GET DESIGN ID FROM PARAMETER
+                // Else we will add the existing design to the item
+                  if(designInstance!=null){
+                     cartItemInstance.addToDesign01(designInstance); 
+                  }else{//If design is not found in database, we will create a new instance
+                     designInstance = new Design();
+                     designInstance.name = "wtf"
+                     designInstance.status = "1"
+                     designInstance.setUser(User.get(session.user.id));
+                     designInstance.designType = "1"
+                     designInstance.imageType = "jsp"
+                     designInstance.designImage = ""
+                     designInstance.save(flush: true);
+                     cartItemInstance.addToDesign01(designInstance); 
+
+                  }
+                }
+
+            cartItemInstance.save(flush: true)
+            //checking cart
+            cartInstance.totalAmount += itemInstance.price
+            cartInstance.userId = (String)session.user.id
+            cartInstance.status = "open"
+            cartInstance.save(flush: true)
+            cartInstance.addToCartItem(cartItemInstance) //one to many relationship
+            flash.message = "Product is added to shopping cart"
+            redirect(action: "show", id: params.id)
+        }
+    } 
+    
+    
+       
+    
+    
     //shopping cart part
     def addCartItem () {
         def itemInstance = Item.get(params.id) //id from list view

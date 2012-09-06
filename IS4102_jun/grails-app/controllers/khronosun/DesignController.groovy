@@ -100,4 +100,17 @@ class DesignController {
             redirect(action: "show", id: params.id)
         }
     }
+    
+    
+    def loadImage = {
+        def design = Design.get(params.id)
+        println "the Design is "+design
+        response.setContentType(design.imageType)
+        response.setContentLength(design.designImage.size())
+        OutputStream out = response.getOutputStream();
+        out.write(design.designImage);
+        out.close();
+
+    }//end itemtemplate Image    
+
 }

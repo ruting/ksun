@@ -12,6 +12,8 @@ class Item {
     String imageType
     int viewCount
 
+        ItemTemplate template
+
     static searchable = true
 
     static belongsTo = [category:Category]

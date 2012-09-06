@@ -6,9 +6,10 @@ class Design {
    String imageType // to indicate if the image is jsp , gif ,etc
    String designType //logo or background
    String status //approve;pending;reject
+   String name // name of the design (set by either users or administrators)
    // Do we need to give it a name and also tags?
    // for example: a design named "konkon" with tags of "abstract, cool, heavy, etc"
-     static belongsTo = [user:User]
+   static belongsTo = [user:User]
 
     static constraints = {
 

@@ -8,6 +8,7 @@
      var sum02 = 0;
      var sum03 = 0;
      var sum04 = 0;
+     //document.getElementById("res").value = test
 	 $('.add01').click(function() {
 	 sum01 = parseFloat($(this).data('amount')).toFixed(2);
      $('#total').text(sum01);
@@ -346,7 +347,7 @@
 
 var guitar = getUrlVars()["type"];
         if(null!=guitar){
-            $("#zipper").click();
+            $("#zipper1").click();
              //show(document.getElementById('zipper'),'zip');
              //ReplaceImage(0,1,document.getElementById('i0'));
             getTypeChange();
@@ -366,12 +367,12 @@ var guitar = getUrlVars()["type"];
             //enable the first button to be active
             document.getElementById('step0Next').style.display='block';
             //Select the first object
-            $("#zipper").click();
+            $("#zipper1").click();
             //Update Changes to the canvas
             getTypeChange();
             //Select the first background image for the guitar
             $("#getOuter1").click(); //to pass the cost of the outer layer
-            ReplaceImage(1,0,document.getElementById('i4'));  
+            ReplaceImage(1,0,document.getElementById('d1'));  
             outerbagGroup.moveToBottom();
 	    outerbagGroup.setAlpha(1);
             //Update Changes to the canvas
@@ -575,12 +576,12 @@ function getUrlVars()
 //--------------------------------------------------------------------------------------------------------------------------------------------------
 var show_array = new Array();
 var disable_array = new Array();
-show_array[0] = 'zip';
-show_array[1] = 'soc';
-show_array[2] = 'min';
-disable_array[0] = 'zipper';
-disable_array[1] = 'sock';
-disable_array[2] = 'mini';
+show_array[0] = 'zip1';
+show_array[1] = 'zip2';
+show_array[2] = 'zip3';
+disable_array[0] = 'zipper1';
+disable_array[1] = 'zipper2';
+disable_array[2] = 'zipper3';
 
 function show(btn,ele) {
 
@@ -613,15 +614,17 @@ function addToCart() {
            */
           stage.toDataURL({
             callback: function(dataUrl) {
+                
               /*
                * here you can do anything you like with the data url.
                * In this tutorial we'll just open the url with the browser
                * so that you can see the result as an image
                */
-              window.open(dataUrl);
+             // window.open(dataUrl);
             }
           }); 
-         
+                 document.getElementById("res").value = 1
+
 
         //Guitar type (image01)
         //Design ID (image02)
@@ -629,7 +632,9 @@ function addToCart() {
         //Logo ID (image04)
         //Logo Price (sum04)
         var total = ( parseFloat(sum01) + parseFloat(sum02) + parseFloat(sum03) + parseFloat(sum04) ).toFixed(2);
-       	toastr.success( 'Item added to Cart! ' + total , '');           
+       	toastr.success( 'Item added to Cart! ' + total , 'Guitar Type' + image01);         
+       
+
   }//end function
      
 
@@ -654,6 +659,16 @@ function addToCart() {
  }); 
  return false; 
  } 
- 
- 
+
+
+
+
+
+
+
+
+
+
+
+
 
